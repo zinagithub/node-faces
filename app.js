@@ -4,6 +4,7 @@ const session = require("express-session");
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
+const { setFlagsFromString } = require('v8');
 const Schema = mongoose.Schema;
 const mongoDb = 'mongodb+srv://zinaMongo:z**m$$1973@cluster0-typlj.mongodb.net/nodeFaces?retryWrites=true&w=majority';
 mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });
@@ -14,7 +15,10 @@ const User = mongoose.model(
     "User",
     new Schema({
       username: { type: String, required: true },
-      password: { type: String, required: true }
+      password: { type: String, required: true },
+      firstname: {type: String, required: true},
+      lastname: {type: String, required: true},
+      mobile: {type: Number, required: true}
     })
   );
   
@@ -56,7 +60,13 @@ const User = mongoose.model(
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(express.urlencoded({ extended: false }));
+  app.use(express.static(path.join(__dirname, 'publics')));
 
+
+  app.get("/log-out", (req, res) => {
+    req.logout();
+    res.redirect("/");
+  }); 
   app.post(
     "/log-in",
     passport.authenticate("local", {
@@ -71,17 +81,23 @@ const User = mongoose.model(
   
   
   
-  app.get("/sign-up", (req, res) => res.render("sign-up-form"));
+  app.get("/sign-up", (req, res) => res.redirect("/"));
 
   app.post("/sign-up", (req, res, next) => {
     const user = new User({
-      username: req.body.username,
-      password: req.body.password
+      username: req.body.user_name,
+      password: req.body.password,
+      firstname: req.body.first_name,
+      lastname: req.body.last_name,
+      mobile: req.body.mob_no
     }).save(err => {
+      var message=""
       if (err) { 
+        res.send("error!")
         return next(err);
       };
-      res.redirect("/");
+      res.send("great")
+      //res.redirect("/");
     });
   });
 

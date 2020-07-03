@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Node Faces</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gruppo&family=Seaweed+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Seaweed+Script&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel='stylesheet' href='/style.css' >
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+</head>
+<body>
+
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header navbar-top">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/" style= "color: black"><span style="font-size: 40px;">Node</span> Faces</a>
+      </div>
+      
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <form class="navbar-form navbar-left" method="post" action="/log-in">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="username" name="username">
+            <input type="password" class="form-control" placeholder="password" name="password">
+          </div>
+          <button type="submit" class="btn btn-default">Login</button>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+        
+          <% if (!user ) { %>
+            <li class="active"><a href="/login">Login</a></li>
+            <li><a href="/signup">Sign up</a></li>
+          <% }else { %>
+            <li><a href="#"> <%= user.username %></a></li>
+            <li><a href="/log-out">Logout</a></li>
+          <% }  %>  
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Langues <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="/arabic">Arabe</a></li>
+                <li><a href="/french">Français</a></li>
+            </ul>
+          </li>
+  
+
+          
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    
+      
+    </div><!-- /.container-fluid -->
+  </nav>
+  
+  <!-- Latest compiled and minified JavaScript -->
+
