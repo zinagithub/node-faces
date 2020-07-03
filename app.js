@@ -4,7 +4,7 @@ const session = require("express-session");
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
-const { setFlagsFromString } = require('v8');
+//const { setFlagsFromString } = require('v8');
 const Schema = mongoose.Schema;
 const mongoDb = 'mongodb+srv://zinaMongo:z**m$$1973@cluster0-typlj.mongodb.net/nodeFaces?retryWrites=true&w=majority';
 mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });
